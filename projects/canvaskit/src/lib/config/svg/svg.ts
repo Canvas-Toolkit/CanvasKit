@@ -19,7 +19,29 @@ export class Svg implements CanvasKit {
     }
   
     drawImage(image: HTMLImageElement, x: number, y: number): void {
-      throw new Error('Not implemented');
+        // Ensure the image element is not null
+        if (!image) {
+            throw new Error('Image element is required.');
+        }
+
+        // Create a canvas element (replace 'canvas' with your actual canvas element)
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+
+        if (ctx) {
+            // Set the canvas dimensions to match the image
+            canvas.width = image.width;
+            canvas.height = image.height;
+
+            // Draw the image onto the canvas at the specified position
+            ctx.drawImage(image, x, y);
+
+            // Append the canvas to the DOM or perform any other desired action
+            // For example:
+            // document.body.appendChild(canvas);
+        } else {
+            throw new Error('Canvas context is not supported.');
+        }
     }
   
     applyFilter(filter: string, element: HTMLCanvasElement): void {
