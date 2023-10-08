@@ -1,5 +1,9 @@
 import { CanvasKit } from "../canvaskit.model";
 
+interface CanvasKit {
+    applyFilter(filter: string, element: HTMLCanvasElement): void;
+    applyEffect(effect: string, element: HTMLCanvasElement): void;
+}
 export class WebGL implements CanvasKit {
 
     drawRect(x: number, y: number, width: number, height: number): void {
@@ -22,13 +26,50 @@ export class WebGL implements CanvasKit {
       throw new Error('Not implemented');
     }
   
+
     applyFilter(filter: string, element: HTMLCanvasElement): void {
-      throw new Error('Not implemented');
+        // Ensure the canvas element is not null
+        if (!element) {
+            throw new Error('Canvas element is required.');
+        }
+
+        // Get the 2D rendering context
+        const ctx = element.getContext('2d');
+
+        if (ctx) {
+            // Apply the filter
+            ctx.filter = filter;
+            // Draw the canvas content to apply the filter
+            ctx.drawImage(element, 0, 0);
+            // Reset the filter to its default value
+            ctx.filter = 'none';
+        } else {
+            throw new Error('Canvas context is not supported.');
+        }
     }
-  
+
     applyEffect(effect: string, element: HTMLCanvasElement): void {
-      throw new Error('Not implemented');
+        // Ensure the canvas element is not null
+        if (!element) {
+            throw new Error('Canvas element is required.');
+        }
+
+        // Get the 2D rendering context
+        const ctx = element.getContext('2d');
+
+        if (ctx) {
+            // Apply the effect (e.g., grayscale)
+            ctx.filter = effect;
+            // Draw the canvas content to apply the effect
+            ctx.drawImage(element, 0, 0);
+            // Reset the effect to its default value
+            ctx.filter = 'none';
+        } else {
+            throw new Error('Canvas context is not supported.');
+        }
     }
+
+
   
     saveAsFile(filename: string, format: 'png' | 'jpeg' | 'webp'): void {
       throw new Error('Not implemented');
