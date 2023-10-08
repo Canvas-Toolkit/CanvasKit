@@ -27,3 +27,44 @@ const svgRenderer = new Svg();
 svgRenderer.drawRect(10, 10, 50, 50);
 svgRenderer.drawText("Hello, SVG!", 20, 20);
 // ...other SVG operations
+```
+
+```typescript
+// Drawing a Circle
+const svgRenderer = new Svg();
+svgRenderer.drawCircle(100, 100, 30);
+
+// Drawing a line
+const svgRenderer = new Svg();
+svgRenderer.drawLine(20, 30, 60, 90);
+
+// Drawing a text
+const svgRenderer = new Svg();
+svgRenderer.drawText("Hello, SVG!", 20, 20);
+
+// Drawing an Image
+const svgRenderer = new Svg();
+const image = new Image();
+image.src = "image.png";
+svgRenderer.drawImage(image, 50, 50);
+
+// Applying a Filter
+const svgRenderer = new Svg();
+const canvasElement = document.createElement("canvas");
+svgRenderer.applyFilter("blur(5px)", canvasElement);
+
+// Applying an Effect
+const svgRenderer = new Svg();
+const canvasElement = document.createElement("canvas");
+svgRenderer.applyEffect("grayscale(100%)", canvasElement);
+
+// Saving as File
+const svgRenderer = new Svg();
+svgRenderer.saveAsFile("mySVG", "png");
+
+//Retrieving Image Data
+const svgRenderer = new Svg();
+const imageData = svgRenderer.getImageData("jpeg");
+```
+
+
