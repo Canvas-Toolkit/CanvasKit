@@ -1,6 +1,6 @@
 import { CanvasKit } from "../canvaskit.model";
 
-export class Context2dRenderer implements CanvasKit {
+export class Svg implements CanvasKit {
 
     drawRect(x: number, y: number, width: number, height: number): void {
       throw new Error('Not implemented');
