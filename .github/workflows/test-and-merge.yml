@@ -14,14 +14,14 @@ jobs:
         run: npm install
 
       - name: Run tests
-        run: npm test
+        run: npm run test -- --no-watch --no-progress --browser=ChromeHeadlessCI
 
-      - name: Fail if tests fail
-        if: ${{ steps.build-and-test.outcome != 'success' }}
-        uses: actions/github-script@v6
-        with:
-          script: |
-            github.issues.createComment({
-              issue_number: context.issue.number,
-              body: 'The pull request tests failed. Please fix the errors before merging.'
-            })
+      - name: Check for failed tests
+        run: |
+          if [ -f "coverage/coverage-summary.json" ]; then
+            failed=$(jq .total.lines.pct < coverage/coverage-summary.json)
+            if [ "$failed" "true" ]; then
+              echo "Some tests failed. Please fix them before merging."
+              exit 1
+            fi
+          fi
