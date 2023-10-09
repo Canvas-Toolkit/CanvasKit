@@ -1,0 +1,27 @@
+name: Test and Merge
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test
+
+      - name: Fail if tests fail
+        if: ${{ steps.build-and-test.outcome != 'success' }}
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              body: 'The pull request tests failed. Please fix the errors before merging.'
+            })
