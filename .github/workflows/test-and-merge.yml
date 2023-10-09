@@ -17,10 +17,10 @@ jobs:
         run: sudo apt install xvfb
 
       - name: Run tests
-        run: xvfb-run npm test
+        run: xvfb-run npm test && killall xvfb
 
       - name: Fail if tests fail
-        if: ${{ steps.build-and-test.outcome != 'success' }}
+        if: ${{ steps.build-and-test.outcome == 'failure' }}
         uses: actions/github-script@v6
         with:
           script: |
