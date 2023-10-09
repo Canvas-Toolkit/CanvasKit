@@ -13,8 +13,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Install xvfb
+        run: sudo apt install xvfb
+
       - name: Run tests
-        run: npm test
+        run: xvfb-run npm test
 
       - name: Fail if tests fail
         if: ${{ steps.build-and-test.outcome != 'success' }}
