@@ -22,11 +22,11 @@ export class WebGL implements CanvasKit {
       throw new Error('Not implemented');
     }
   
-    applyFilter(filter: string, element: HTMLCanvasElement): void {
+    applyFilter(filter: string, element?: HTMLCanvasElement): void {
       throw new Error('Not implemented');
     }
   
-    applyEffect(effect: string, element: HTMLCanvasElement): void {
+    applyEffect(effect: string, element?: HTMLCanvasElement): void {
       throw new Error('Not implemented');
     }
   
