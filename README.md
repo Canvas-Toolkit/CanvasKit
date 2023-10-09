@@ -11,21 +11,6 @@ CanvasKit is a comprehensive library for working with the Canvas API. It provide
 ## Getting started
 To get started with CanvasKit, simply install the library using your favorite package manager. Then, you can start using the library to create canvas applications by calling the various functions and methods that it provides.
 
-## Example
-```typescript
-import CanvasToolkit from 'canvaskit';
-
-const canvas = document.querySelector('#myCanvas');
-const ctx = canvas.getContext('2d');
-
-// Create a new CanvasKit instance
-const canvasKit = new CanvasKit(ctx);
-
-// Draw a rectangle
-canvasKit.drawRect(10, 10, 100, 100);
-
-```
-
 ## Support
 If you have any questions or need help using CanvasKit, please feel free to open an issue on the GitHub repository.
 
