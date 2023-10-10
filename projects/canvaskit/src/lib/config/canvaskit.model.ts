@@ -8,9 +8,10 @@ export interface CanvasKit {
     applyEffect(effect: string, element: HTMLCanvasElement): void;
   
     // Save the canvas as a file.
-    saveAsFile(filename: string, format: 'png' | 'jpeg' | 'webp'): void;
+    saveAsFile(filename: string, format: ImageFormat): void;
   
     // Get the image data in a specific format.
-    getImageData(format: 'png' | 'jpeg' | 'webp'): Promise<Uint8Array>;
+    getImageData(format: ImageFormat): Promise<Uint8Array>;
   }
   
+  export type ImageFormat = 'png' | 'jpeg' | 'webp'
