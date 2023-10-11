@@ -1,4 +1,4 @@
-import { CanvasKit } from "../canvaskit.model";
+import { CanvasKit, ImageFormat } from "../canvaskit.model";
 
 export class Context2dRenderer implements CanvasKit {
 
@@ -30,11 +30,11 @@ export class Context2dRenderer implements CanvasKit {
       throw new Error('Not implemented');
     }
   
-    saveAsFile(filename: string, format: 'png' | 'jpeg' | 'webp'): void {
+    saveAsFile(filename: string, format: ImageFormat): void {
       throw new Error('Not implemented');
     }
   
-    getImageData(format: 'png' | 'jpeg' | 'webp'): Promise<Uint8Array> {
+    getImageData(format: ImageFormat): Promise<Uint8Array> {
       throw new Error('Not implemented');
     }
   }
