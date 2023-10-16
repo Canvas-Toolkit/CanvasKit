@@ -49,23 +49,29 @@ function retracePath(currentNode: Elements): Elements[] {
   return path;
 }
 
+type Elements = { x: number; y: number };
+
 function getNeighbors(currentNode: Elements, grid: Elements[][]): Elements[] {
-  const neighbors: Elements[] = [];
+  const { x, y } = currentNode;
+  
+  // Define the relative positions for neighbors.
+  const relativePositions = [
+    { dx: -1, dy: -1 },
+    { dx: -1, dy: 0 },
+    { dx: -1, dy: 1 },
+    { dx: 0, dy: -1 },
+    { dx: 0, dy: 1 },
+    { dx: 1, dy: -1 },
+    { dx: 1, dy: 0 },
+    { dx: 1, dy: 1 },
+  ];
 
-  for (const dx of [-1, 0, 1]) {
-    for (const dy of [-1, 0, 1]) {
-      if (dx === 0 && dy === 0) {
-        continue;
-      }
-
-      const neighborX = currentNode.x + dx;
-      const neighborY = currentNode.y + dy;
-
-      if (neighborX >= 0 && neighborX < grid.length && neighborY >= 0 && neighborY < grid[0].length) {
-        neighbors.push(grid[neighborX][neighborY]);
-      }
-    }
-  }
+  const neighbors = relativePositions
+    .map(({ dx, dy }) => ({ x: x + dx, y: y + dy }))
+    .filter(({ x: neighborX, y: neighborY }) => 
+      neighborX >= 0 && neighborX < grid.length && neighborY >= 0 && neighborY < grid[0].length
+    )
+    .map(({ x: neighborX, y: neighborY }) => grid[neighborX][neighborY]);
 
   return neighbors;
 }
